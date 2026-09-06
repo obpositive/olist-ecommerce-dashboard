@@ -61,7 +61,7 @@ engine = init_connection()
 
 # 4. Sidebar Navigation & Filters
 with st.sidebar:
-    st.markdown("# <u> Olist Marketplace Intelligence</u>", unsafe_allow_html=True)
+    st.markdown("# <u> Olist Marketplace Intelligence- Vinaya</u>", unsafe_allow_html=True)
     st.markdown("---", unsafe_allow_html=True)
     st.markdown("## 🧭 Report Navigation")
     page = st.radio("", ["Sales & Marketplace", "Logistics & Delivery", "Seller Performance", "Customer Insights", "Product Quality"], label_visibility="collapsed")    
