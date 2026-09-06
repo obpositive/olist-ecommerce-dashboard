@@ -40,10 +40,17 @@ load_dotenv(dotenv_path=env_path)
 # 3. Database Connection
 @st.cache_resource
 def init_connection():
-    db_uri = os.getenv("INSFORGE_DB_URI")
+    # 1. Try Streamlit Secrets (for Cloud Deployment)
+    if "INSFORGE_DB_URI" in st.secrets:
+        db_uri = st.secrets["INSFORGE_DB_URI"]
+    # 2. Fallback to local environment variables (for local testing)
+    else:
+        db_uri = os.getenv("INSFORGE_DB_URI")
+        
     if not db_uri:
-        st.error("Database connection string not found. Check your .env file.")
+        st.error("Database connection string not found. Check your secrets or .env file.")
         st.stop()
+        
     if db_uri.startswith("postgresql://"):
         db_uri = db_uri.replace("postgresql://", "postgresql+psycopg2://")
         
